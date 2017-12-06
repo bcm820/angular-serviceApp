@@ -1,0 +1,9 @@
+
+<div class="well text-center" style=height:150px>
+    <h4>{{place}}</h4>
+    <p *ngIf="place === 'Farm'">Earn 2 - 5 gold</p>
+    <p *ngIf="place === 'Cave'">Earn 5 - 10 gold</p>
+    <p *ngIf="place === 'Casino'">Earn/lose up to 100 gold</p>
+    <p *ngIf="place === 'House'">Earn 7 - 15 gold</p>
+    <button (click)=onClick(place) class="btn btn-warning">{{place}}!</button>
+</div>

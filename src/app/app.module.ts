@@ -10,6 +10,10 @@ import { AlphaComponent } from './numbers/alpha/alpha.component';
 import { BetaComponent } from './numbers/beta/beta.component';
 import { DataService } from './numbers/data.service';
 import { GammaComponent } from './numbers/gamma/gamma.component';
+import { NinjaGoldComponent } from './ninja-gold/ninja-gold.component';
+import { GoldService } from './ninja-gold/gold.service';
+import { PlaceComponent } from './ninja-gold/place/place.component';
+import { MessagesComponent } from './ninja-gold/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +21,20 @@ import { GammaComponent } from './numbers/gamma/gamma.component';
     AlphaComponent,
     BetaComponent,
     NumbersComponent,
-    GammaComponent
+    GammaComponent,
+    NinjaGoldComponent,
+    PlaceComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
 		HttpModule
   ],
-  providers: [DataService],
+  providers: [
+    DataService,
+    GoldService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
