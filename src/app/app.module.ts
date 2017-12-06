@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -14,6 +15,9 @@ import { NinjaGoldComponent } from './ninja-gold/ninja-gold.component';
 import { GoldService } from './ninja-gold/gold.service';
 import { PlaceComponent } from './ninja-gold/place/place.component';
 import { MessagesComponent } from './ninja-gold/messages/messages.component';
+import { HttpAppComponent } from './http-app/http-app.component';
+import { TaskService } from './http-app/task.service';
+import { FirstComponent } from './http-app/first/first.component';
 
 @NgModule({
   declarations: [
@@ -24,16 +28,20 @@ import { MessagesComponent } from './ninja-gold/messages/messages.component';
     GammaComponent,
     NinjaGoldComponent,
     PlaceComponent,
-    MessagesComponent
+    MessagesComponent,
+    HttpAppComponent,
+    FirstComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-		HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     DataService,
-    GoldService
+    GoldService,
+    TaskService
   ],
   bootstrap: [AppComponent]
 })
