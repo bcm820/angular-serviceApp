@@ -9,15 +9,20 @@ import { AppComponent } from './app.component';
 import { NumbersComponent } from './numbers/numbers.component';
 import { AlphaComponent } from './numbers/alpha/alpha.component';
 import { BetaComponent } from './numbers/beta/beta.component';
-import { DataService } from './numbers/data.service';
 import { GammaComponent } from './numbers/gamma/gamma.component';
+import { DataService } from './numbers/data.service';
+
 import { NinjaGoldComponent } from './ninja-gold/ninja-gold.component';
-import { GoldService } from './ninja-gold/gold.service';
 import { PlaceComponent } from './ninja-gold/place/place.component';
 import { MessagesComponent } from './ninja-gold/messages/messages.component';
+import { GoldService } from './ninja-gold/gold.service';
+
 import { HttpAppComponent } from './http-app/http-app.component';
-import { TaskService } from './http-app/task.service';
 import { FirstComponent } from './http-app/first/first.component';
+import { TaskService } from './http-app/task.service';
+
+import { GithubScoreComponent } from './github-score/github-score.component';
+import { GithubService } from './github-score/github.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,8 @@ import { FirstComponent } from './http-app/first/first.component';
     PlaceComponent,
     MessagesComponent,
     HttpAppComponent,
-    FirstComponent
+    FirstComponent,
+    GithubScoreComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,8 @@ import { FirstComponent } from './http-app/first/first.component';
   providers: [
     DataService,
     GoldService,
-    TaskService
+    TaskService,
+    GithubService
   ],
   bootstrap: [AppComponent]
 })

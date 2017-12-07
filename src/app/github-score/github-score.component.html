@@ -1,0 +1,62 @@
+
+<div class=row style=margin-top:20%>
+
+    <div class=col-sm-4></div>
+    <div class="col-sm-4 text-center">
+        <form (submit)=onSubmit(form) #form="ngForm">
+            <h1>GitHub Stats</h1>
+            <div class=form-group>
+                <hr><h4>Enter a GitHub username:</h4>
+                <input type=text class="form-control input-lg" required name=username #username='ngModel' [(ngModel)]='name' placeholder="GitHub Username">
+            </div>
+            <input *ngIf=!username.valid type=submit value="Calculate GitHub Score" class="btn btn-lg btn-danger disabled" [disabled]=!username.valid>
+            <input *ngIf=username.valid type=submit value="Calculate GitHub Score" class="btn btn-lg btn-success" data-toggle="modal" data-target="#score">
+        </form>
+    </div>
+    <div class=col-sm-4></div>
+
+    <!-- Modal -->
+    <div id="score" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div *ngIf="data" class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title text-center"><a href={{data.html_url}}>{{data.login}}</a></h2>
+        </div>
+        <div *ngIf="data" class=modal-body>
+            
+            <div class=text-center>
+                <img src="{{data.avatar_url}}" alt="{{data.login}}">
+                <h4>Your score: {{data.followers + data.public_repos}} 
+                    (<span *ngIf="data.followers + data.public_repos < 20" style=color:red>Needs Work!</span>
+                    <span *ngIf="data.followers + data.public_repos > 20 && data.followers + data.public_repos < 50" style=color:orange>A decent start!</span>
+                    <span *ngIf="data.followers + data.public_repos > 50 && data.followers + data.public_repos < 100" style=color:black>Doing good!</span>
+                    <span *ngIf="data.followers + data.public_repos > 100 && data.followers + data.public_repos < 200" style=color:green>Great job!</span>
+                    <span *ngIf="data.followers + data.public_repos >= 200" style=color:blue>GitHub elite!</span>)
+                </h4>
+            </div>
+            <div class=col-sm-8>
+                <strong>{{data.name}}</strong><br> 
+                Joined On: {{data.created_at|date:'short'}}<br>
+                Profile Last Updated: {{data.updated_at|date:'short'}}
+            </div>
+            <div class=col-sm-4>
+                <p>
+                    <span class="label label-primary">{{data.public_repos}}</span> public repos<br>
+                    <span class="label label-primary">{{data.followers}}</span> followers<br>
+                    <span class="label label-primary">{{data.following}}</span> users followed
+                </p>
+            </div>
+            <div class=text-center>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+        </div>
+
+    </div>
+    </div>
+
+</div>
