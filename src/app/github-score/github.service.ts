@@ -1,22 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'Rxjs';
-import { HttpClient } from '@angular/common/http'
-import 'rxjs/add/operator/toPromise';
+import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GithubService {
-
-  data = new BehaviorSubject({});
   
-  constructor(private _http: HttpClient) {
+  constructor(private _http: Http) {
   }
 
-  getData(name){
-    this._http.get(`http://api.github.com/users/${name}`).toPromise()
-    .then(res => {
-      this._http.get(`http://api.github.com/users/${name}`)
-      .subscribe((data: any) => { this.data.next(data) })
-    })
-    .catch(err => { return false; });
+  getData(username) {
+    return this._http.get(`http://api.github.com/users/${username}`).map(res => res.json());
   }
+  
 }

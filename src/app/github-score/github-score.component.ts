@@ -7,22 +7,26 @@ import { GithubService } from './github.service';
   templateUrl: './github-score.component.html',
   styleUrls: ['./github-score.component.css']
 })
+
 export class GithubScoreComponent implements OnInit {
 
-  data = null;
+  data;
   
   constructor(private _github: GithubService) { }
 
-  ngOnInit() {
-    this._github.data.subscribe(data => this.data = data);
-  }
+  ngOnInit() {}
 
   onSubmit(form){
-    form.form.markAsPristine();
-    if(!this._github.getData(form.form.value.username)){
-      this.data = this._github.getData(form.form.value.username);
-    }
-    else { this.data = false; }
+
+    let username = form.form.value.username;
+
+    this._github.getData(username).subscribe(
+      res => this.data = res,
+      err => this.data = null
+    );
+
+    form.reset();
+
   }
 
 }
