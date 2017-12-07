@@ -18,8 +18,11 @@ export class GithubScoreComponent implements OnInit {
   }
 
   onSubmit(form){
-    // form.form.markAsPristine();
-    this.data = this._github.getData(form.form.value.username);
+    form.form.markAsPristine();
+    if(!this._github.getData(form.form.value.username)){
+      this.data = this._github.getData(form.form.value.username);
+    }
+    else { this.data = false; }
   }
 
 }

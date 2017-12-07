@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'Rxjs';
 import { HttpClient } from '@angular/common/http'
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class GithubService {
@@ -11,10 +12,11 @@ export class GithubService {
   }
 
   getData(name){
-    this._http.get(`http://api.github.com/users/${name}`)
-    .subscribe((data: any) => {
-      this.data.next(data);
-    });
+    this._http.get(`http://api.github.com/users/${name}`).toPromise()
+    .then(res => {
+      this._http.get(`http://api.github.com/users/${name}`)
+      .subscribe((data: any) => { this.data.next(data) })
+    })
+    .catch(err => { return false; });
   }
-
 }
